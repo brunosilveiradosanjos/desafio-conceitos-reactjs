@@ -7,7 +7,6 @@ function App() {
 
   const [repositories, setRepository] = useState([])
 
-
   // update webpage
   function getRepositories() {
     api.get('/repositories').then(res => {
@@ -38,13 +37,11 @@ function App() {
 
   async function handleRemoveRepository(id) {
 
-    // console.log(id)
-
     // delete repository by id
     await api.delete(`repositories/${id}`);
 
     // update webpage
-    getRepositories();
+    setRepository(repositories.filter(repository => repository.id !== id))
 
   }
 
